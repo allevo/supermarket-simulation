@@ -1,6 +1,6 @@
 {
   "name": "@allevo/kata09",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Calculate the cart cost",
   "main": "index.js",
   "scripts": {
