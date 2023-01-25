@@ -12,6 +12,19 @@ t.test('supermarket', t => {
     { id: 'D', price: 15, weigh: 50 }
   ], { deliveryFactor: 0.5 })
 
+  t.test('createCartFromArray', t => {
+    t.test('ok', t => {
+      const cart = supermarket.createCartFromArray(['A', 'A', 'B'])
+      t.strictSame(cart.items, ['A', 'A', 'B'])
+      t.end()
+    })
+    t.test('error: unknown item', t => {
+      t.throws(() => supermarket.createCartFromArray(['G']))
+      t.end()
+    })
+    t.end()
+  })
+
   t.test('AutomaticCheckout', t => {
     const checkout = supermarket.createAutomaticCheckout()
     const tests = [
@@ -31,15 +44,29 @@ t.test('supermarket', t => {
       })
     }
 
+    t.test('calculateCartCost accepts only Cart instance', t => {
+      t.throws(() => checkout.calculateCartCost([]))
+      t.end()
+    })
+
     t.end()
   })
 
   t.test('Delivery', t => {
     const delivery = supermarket.getDelivery()
 
-    const cart = supermarket.createCartFromArray(['A', 'B', 'C', 'A'])
-    const c02 = delivery.calculateCO2Impact(cart, 20.5)
-    t.equal(c02, 533)
+    t.test('calculateCO2Impact', t => {
+      const cart = supermarket.createCartFromArray(['A', 'B', 'C', 'A'])
+      const c02 = delivery.calculateCO2Impact(cart, 20.5)
+      t.equal(c02, 533)
+
+      t.end()
+    })
+
+    t.test('calculateCO2Impact accepts only Cart instance', t => {
+      t.throws(() => delivery.calculateCO2Impact([], 0))
+      t.end()
+    })
 
     t.end()
   })
