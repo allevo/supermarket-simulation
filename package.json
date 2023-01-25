@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "standard",
     "pretest": "npm run lint",
-    "test": "tap test.js"
+    "test": "tap test.js",
+    "prepare": "husky install"
   },
   "author": "allevo <tomallevi@gmail.com>",
   "license": "MIT",
