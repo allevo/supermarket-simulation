@@ -1,6 +1,6 @@
 {
   "name": "@allevo/green-supermarket",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Calculate the cart cost",
   "main": "index.js",
   "scripts": {
